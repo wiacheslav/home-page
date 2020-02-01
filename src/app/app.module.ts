@@ -12,6 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {ObserversModule} from "@angular/cdk/observers";
+import {AngularResizedEventModule} from "angular-resize-event";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ObserversModule} from "@angular/cdk/observers";
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    AngularResizedEventModule
   ],
   providers: [],
   bootstrap: [AppComponent]

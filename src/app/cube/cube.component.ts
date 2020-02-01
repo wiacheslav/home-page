@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import {ResizedEvent} from "angular-resize-event";
 
 @Component({
   selector: 'app-cube',
@@ -61,7 +62,10 @@ export class CubeComponent implements OnInit {
     this.animate();
   }
 
-  domChanges(event: MutationRecord[]) {
-    console.log(event);
+  domChanges(event: ResizedEvent) {
+    this.renderer.setSize(event.newWidth - 2, event.newHeight - 2);
+    this.camera.aspect = event.newWidth / event.newHeight;
+    this.camera.updateProjectionMatrix();
+    this.animate();
   }
 }
