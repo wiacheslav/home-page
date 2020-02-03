@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { ResizedEvent } from "angular-resize-event";
 
 @Component({
   selector: 'app-obj',
@@ -61,4 +62,10 @@ export class ObjComponent implements OnInit {
     cameraControls.addEventListener('change', this.anim);
   }
 
+  domChanges(event: ResizedEvent) {
+    this.renderer.setSize(event.newWidth - 10, event.newHeight - 10);
+    this.camera.aspect = event.newWidth / event.newHeight;
+    this.camera.updateProjectionMatrix();
+    this.animate();
+  }
 }
