@@ -33,7 +33,7 @@ export class ObjComponent implements OnInit {
 
   ngOnInit() {
     this.camera = new THREE.PerspectiveCamera( 45, 600 / 600, 1, 5000 );
-    this.camera.position.z = 2000;
+    this.camera.position.z = 1000;
     this.scene = new THREE.Scene();
 
     const ambientLight = new THREE.AmbientLight( 0xcccccc, 0.4 );
@@ -42,6 +42,7 @@ export class ObjComponent implements OnInit {
     const pointLight = new THREE.PointLight( 0xffffff, 0.8 );
     this.camera.add( pointLight );
     this.scene.add( this.camera );
+    this.scene.background = new THREE.Color(0x484848);
 
     let object;
     const manager = new THREE.LoadingManager(() => {
@@ -69,7 +70,7 @@ export class ObjComponent implements OnInit {
   }
 
   domChanges(event: ResizedEvent) {
-        this.renderer.setSize(event.newWidth, event.newHeight);
+        this.renderer.setSize(event.newWidth-1, event.newHeight-1);
         this.camera.aspect = event.newWidth / event.newHeight;
         this.camera.updateProjectionMatrix();
         this.animate();

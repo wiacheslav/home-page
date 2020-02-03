@@ -34,6 +34,7 @@ export class CubeComponent implements OnInit {
     this.camera = new THREE.PerspectiveCamera(70, 800 / 600, 0.01, 10);
     this.camera.position.z = 1;
     this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color(0x484848);
 
     const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
     const material = new THREE.MeshNormalMaterial({wireframe: true});
@@ -46,7 +47,7 @@ export class CubeComponent implements OnInit {
 
     const phongMaterial = new THREE.MeshPhongMaterial({color: materialColor, side: THREE.DoubleSide});
 
-    this.mesh = new THREE.Mesh(geometry, material);
+    this.mesh = new THREE.Mesh(geometry, phongMaterial);
     this.scene.add(this.mesh);
 
     this.scene.add(ambientLight);
@@ -64,7 +65,7 @@ export class CubeComponent implements OnInit {
   }
 
   domChanges(event: ResizedEvent) {
-    this.renderer.setSize(event.newWidth, event.newHeight);
+    this.renderer.setSize(event.newWidth-1, event.newHeight-1);
     this.camera.aspect = event.newWidth / event.newHeight;
     this.camera.updateProjectionMatrix();
     this.animate();
