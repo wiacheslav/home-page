@@ -13,11 +13,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {ObserversModule} from "@angular/cdk/observers";
 import {AngularResizedEventModule} from "angular-resize-event";
+import { ObjComponent } from './obj/obj.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CubeComponent
+    CubeComponent,
+    ObjComponent
 ],
   imports: [
     BrowserModule,

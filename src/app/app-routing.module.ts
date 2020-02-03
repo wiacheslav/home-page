@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CubeComponent} from "./cube/cube.component";
+import { ObjComponent } from "./obj/obj.component";
 
 
 const routes: Routes = [
   {component: CubeComponent, path: 'cube'},
-  {path: '', redirectTo: 'cube', pathMatch: 'full'}
+  {component: ObjComponent, path: 'obj'},
+  {path: '', redirectTo: 'obj', pathMatch: 'full'}
 ];
 
 @NgModule({

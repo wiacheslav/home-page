@@ -1,10 +1,10 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import {ResizedEvent} from "angular-resize-event";
+import { ResizedEvent } from "angular-resize-event";
 
 @Component({
   selector: 'app-cube',
@@ -31,39 +31,40 @@ export class CubeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.camera = new THREE.PerspectiveCamera( 70, 800 / 600, 0.01, 10 );
+    this.camera = new THREE.PerspectiveCamera(70, 800 / 600, 0.01, 10);
     this.camera.position.z = 1;
     this.scene = new THREE.Scene();
 
-    const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-    const material = new THREE.MeshNormalMaterial({wireframe: false});
-    const ambientLight = new THREE.AmbientLight( 0x333333 );
-    const light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
-    light.position.set( 15, 40, 35 );
+    const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+    const material = new THREE.MeshNormalMaterial({wireframe: true});
+    const ambientLight = new THREE.AmbientLight(0x333333);
+    const light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
+    light.position.set(15, 40, 35);
 
     const materialColor = new THREE.Color();
-    materialColor.setRGB( 1.0, 1.0, 1.0 );
+    materialColor.setRGB(1.0, 1.0, 1.0);
 
-    const phongMaterial = new THREE.MeshPhongMaterial( { color: materialColor, side: THREE.DoubleSide } );
+    const phongMaterial = new THREE.MeshPhongMaterial({color: materialColor, side: THREE.DoubleSide});
 
-    this.mesh = new THREE.Mesh( geometry, phongMaterial );
-    this.scene.add( this.mesh );
+    this.mesh = new THREE.Mesh(geometry, material);
+    this.scene.add(this.mesh);
 
-    this.scene.add( ambientLight );
-    this.scene.add( light );
+    this.scene.add(ambientLight);
+    this.scene.add(light);
 
-    this.renderer = new THREE.WebGLRenderer( { antialias: true } );
-    this.renderer.setSize( 800, 600 );
+    this.renderer = new THREE.WebGLRenderer({antialias: true});
+    this.renderer.setPixelRatio( window.devicePixelRatio );
+    this.renderer.setSize(800, 600);
 
-    this.output.nativeElement.appendChild(this.renderer.domElement );
+    this.output.nativeElement.appendChild(this.renderer.domElement);
 
-    const cameraControls = new OrbitControls( this.camera, this.renderer.domElement );
-    cameraControls.addEventListener( 'change', this.anim );
+    const cameraControls = new OrbitControls(this.camera, this.renderer.domElement);
+    cameraControls.addEventListener('change', this.anim);
     this.animate();
   }
 
   domChanges(event: ResizedEvent) {
-    this.renderer.setSize(event.newWidth - 2, event.newHeight - 2);
+    this.renderer.setSize(event.newWidth - 10, event.newHeight - 10);
     this.camera.aspect = event.newWidth / event.newHeight;
     this.camera.updateProjectionMatrix();
     this.animate();
