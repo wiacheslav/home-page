@@ -3,6 +3,8 @@ import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { ResizedEvent } from "angular-resize-event";
+import { of, Subject } from "rxjs";
+import { debounceTime, tap } from "rxjs/operators";
 
 @Component({
   selector: 'app-obj',
@@ -16,6 +18,7 @@ export class ObjComponent implements OnInit {
   scene: any;
   renderer: any;
   anim = () => this.animate();
+  resizeEvent = new Subject<ResizedEvent>();
 
   animate() {
     //requestAnimationFrame(this.anim);
@@ -60,12 +63,15 @@ export class ObjComponent implements OnInit {
     this.output.nativeElement.appendChild(this.renderer.domElement);
     const cameraControls = new OrbitControls(this.camera, this.renderer.domElement);
     cameraControls.addEventListener('change', this.anim);
+    this.resizeEvent.asObservable().pipe(
+      debounceTime(250)
+    ).subscribe(size => this.domChanges(size));
   }
 
   domChanges(event: ResizedEvent) {
-    this.renderer.setSize(event.newWidth, event.newHeight);
-    this.camera.aspect = event.newWidth / event.newHeight;
-    this.camera.updateProjectionMatrix();
-    this.animate();
+        this.renderer.setSize(event.newWidth, event.newHeight);
+        this.camera.aspect = event.newWidth / event.newHeight;
+        this.camera.updateProjectionMatrix();
+        this.animate();
   }
 }
