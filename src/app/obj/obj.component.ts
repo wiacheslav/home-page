@@ -43,6 +43,7 @@ export class ObjComponent implements OnInit {
     const manager = new THREE.LoadingManager(() => {
       object.position.y = 95;
       this.scene.add(object);
+      this.animate();
     });
 
     const loader = new OBJLoader( manager );
@@ -58,7 +59,6 @@ export class ObjComponent implements OnInit {
     this.output.nativeElement.appendChild(this.renderer.domElement);
     const cameraControls = new OrbitControls(this.camera, this.renderer.domElement);
     cameraControls.addEventListener('change', this.anim);
-    this.animate();
   }
 
 }
