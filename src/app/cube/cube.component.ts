@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import Stats from 'three/examples/js/libs/stats.min.js';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -20,6 +21,7 @@ export class CubeComponent implements OnInit {
   scene: any;
   renderer: any;
   anim = () => this.animate();
+  stats: any;
 
   animate() {
     // requestAnimationFrame(this.anim);
@@ -28,6 +30,7 @@ export class CubeComponent implements OnInit {
     // this.mesh.rotation.y += 0.02;
 
     this.renderer.render(this.scene, this.camera);
+    this.stats.update();
   }
 
   ngOnInit(): void {
@@ -58,6 +61,10 @@ export class CubeComponent implements OnInit {
     this.renderer.setSize(800, 600);
 
     this.output.nativeElement.appendChild(this.renderer.domElement);
+    this.stats = new Stats();
+    this.stats.dom.style.top = null;
+    this.stats.dom.style.left = null;
+    this.output.nativeElement.appendChild(this.stats.dom);
 
     const cameraControls = new OrbitControls(this.camera, this.renderer.domElement);
     cameraControls.addEventListener('change', this.anim);
