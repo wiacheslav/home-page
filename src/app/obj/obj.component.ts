@@ -36,7 +36,7 @@ export class ObjComponent implements OnInit {
 
   ngOnInit() {
     let textureLoader = new THREE.TextureLoader();
-    textureLoader.load('./assets/cloud_sky.jpg', (texture) => {
+    textureLoader.load('./assets/sky.day.jpg', (texture) => {
       texture.mapping = THREE.UVMapping;
       this.camera = new THREE.PerspectiveCamera( 45, 600 / 600, 1, 5000 );
       this.camera.position.z = 1000;
@@ -49,11 +49,7 @@ export class ObjComponent implements OnInit {
       this.camera.add( pointLight );
       this.scene.add( this.camera );
       //this.scene.background = new THREE.Color(0x484848);
-      this.scene.background.scene.background = new THREE.WebGLCubeRenderTarget( 1024, {
-        generateMipmaps: true,
-        minFilter: THREE.LinearMipmapLinearFilter,
-        magFilter: THREE.LinearFilter
-      } ).fromEquirectangularTexture( this.renderer, texture );
+
 
       let object;
       const manager = new THREE.LoadingManager(() => {
@@ -71,6 +67,12 @@ export class ObjComponent implements OnInit {
       this.renderer = new THREE.WebGLRenderer({antialias: true});
       this.renderer.setPixelRatio( window.devicePixelRatio );
       this.renderer.setSize(800, 600);
+
+      this.scene.background = new THREE.WebGLCubeRenderTarget( 1024, {
+        generateMipmaps: true,
+        minFilter: THREE.LinearMipmapLinearFilter,
+        magFilter: THREE.LinearFilter
+      } ).fromEquirectangularTexture( this.renderer, texture );
 
       this.output.nativeElement.appendChild(this.renderer.domElement);
 
