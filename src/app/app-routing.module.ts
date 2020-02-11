@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CubeComponent} from "./cube/cube.component";
 import { ObjComponent } from "./obj/obj.component";
+import { OrthoCamComponent } from "./ortho-cam/ortho-cam.component";
 
 
 const routes: Routes = [
   {component: CubeComponent, path: 'cube'},
   {component: ObjComponent, path: 'obj'},
-  {path: '', redirectTo: 'obj', pathMatch: 'full'}
+  {component: OrthoCamComponent, path: 'ortho'},
+  {path: '', redirectTo: 'ortho', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -14,12 +14,14 @@ import { MatListModule } from '@angular/material/list';
 import {ObserversModule} from "@angular/cdk/observers";
 import {AngularResizedEventModule} from "angular-resize-event";
 import { ObjComponent } from './obj/obj.component';
+import { OrthoCamComponent } from './ortho-cam/ortho-cam.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CubeComponent,
-    ObjComponent
+    ObjComponent,
+    OrthoCamComponent
 ],
   imports: [
     BrowserModule,
