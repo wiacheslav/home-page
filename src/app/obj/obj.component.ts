@@ -87,6 +87,10 @@ export class ObjComponent implements OnInit {
       this.resizeEvent.asObservable().pipe(
         debounceTime(250)
       ).subscribe(size => this.domChanges(size));
+      this.resizeEvent.next({
+        newWidth: window.innerWidth,
+        newHeight: window.innerHeight
+      } as ResizedEvent);
     });
 
   }
