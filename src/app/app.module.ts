@@ -15,13 +15,15 @@ import {ObserversModule} from "@angular/cdk/observers";
 import {AngularResizedEventModule} from "angular-resize-event";
 import { ObjComponent } from './obj/obj.component';
 import { OrthoCamComponent } from './ortho-cam/ortho-cam.component';
+import { NebulaComponent } from './nebula/nebula.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CubeComponent,
     ObjComponent,
-    OrthoCamComponent
+    OrthoCamComponent,
+    NebulaComponent
 ],
   imports: [
     BrowserModule,

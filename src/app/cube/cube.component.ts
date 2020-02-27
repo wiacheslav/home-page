@@ -72,7 +72,7 @@ export class CubeComponent implements OnInit {
   }
 
   domChanges(event: ResizedEvent) {
-    this.renderer.setSize(event.newWidth-1, event.newHeight-1);
+    this.renderer.setSize(event.newWidth, event.newHeight);
     this.camera.aspect = event.newWidth / event.newHeight;
     this.camera.updateProjectionMatrix();
     this.animate();

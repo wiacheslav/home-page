@@ -22,8 +22,8 @@ export class OrthoCamComponent implements OnInit {
 
   ngOnInit(): void {
     this.lut = new Lut();
-    this.orthoCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 2);
-    this.orthoCamera.position.set( 0.5, 0, 1 );
+    this.orthoCamera = new THREE.OrthographicCamera(-10, 1, 1, -1, 1, 2);
+    this.orthoCamera.position.set( 0.0, 0, 1 );
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color( 0xffffff );
     let sprite = new THREE.Sprite( new THREE.SpriteMaterial( {
