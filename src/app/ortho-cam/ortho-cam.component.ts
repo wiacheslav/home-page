@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
-import { Lut } from "three/examples/jsm/math/Lut";
-import { WebGLRenderer } from "three";
+import { Lut } from 'three/examples/jsm/math/Lut';
+import { WebGLRenderer } from 'three';
 
 @Component({
   selector: 'app-ortho-cam',
