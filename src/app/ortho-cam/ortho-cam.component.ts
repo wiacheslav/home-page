@@ -26,7 +26,7 @@ export class OrthoCamComponent implements OnInit {
     this.orthoCamera.position.set( 0.0, 0, 1 );
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color( 0xffffff );
-    let sprite = new THREE.Sprite( new THREE.SpriteMaterial( {
+    const sprite = new THREE.Sprite( new THREE.SpriteMaterial( {
       map: new THREE.CanvasTexture( this.lut.createCanvas() )
     } ) );
     sprite.scale.x = 0.125;
